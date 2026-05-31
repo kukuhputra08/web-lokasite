@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router";
 
-import Navbar from "../components/Navbar";
+// import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 import { packageOptions } from "../data/packageOptions";
@@ -168,7 +168,15 @@ function Order() {
 
   return (
     <main className="min-h-screen bg-light-gray font-ubuntu text-text-slate">
-      <Navbar />
+      {/* <Navbar /> */}
+
+      <button
+        onClick={() => navigate("/")}
+        className="fixed bottom-8 left-8 z-40 flex items-center gap-2 rounded-full bg-salmon px-6 py-3 font-semibold text-white shadow-lg transition hover:bg-salmon-hover hover:scale-105"
+      >
+        <span className="material-symbols-outlined text-xl">arrow_back</span>
+        Kembali ke Home
+      </button>
 
       <section className="pt-32 pb-16 md:pb-24">
         <div className="mx-auto max-w-[1200px] px-6 sm:px-8 lg:px-12">

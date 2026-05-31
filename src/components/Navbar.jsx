@@ -87,45 +87,45 @@ function Navbar() {
         {isMenuOpen && (
           <div className="border-t border-border-gray/20 py-4 md:hidden">
             <div className="flex flex-col gap-2">
-              <a
-                href="#home"
+              <Link
+                to="/#home"
                 onClick={closeMenu}
                 className="rounded-lg px-4 py-2.5 font-semibold text-salmon transition-all duration-300 hover:bg-salmon/10"
               >
                 Home
-              </a>
+              </Link>
 
-              <a
-                href="#layanan"
+              <Link
+                to="/#layanan"
                 onClick={closeMenu}
                 className="rounded-lg px-4 py-2.5 font-semibold text-text-muted transition-all duration-300 hover:bg-light-gray hover:text-navy-dark"
               >
                 Layanan
-              </a>
+              </Link>
 
-              <a
-                href="#paket"
+              <Link
+                to="/#paket"
                 onClick={closeMenu}
                 className="rounded-lg px-4 py-2.5 font-semibold text-text-muted transition-all duration-300 hover:bg-light-gray hover:text-navy-dark"
               >
                 Paket
-              </a>
+              </Link>
 
-              <a
-                href="#alur"
+              <Link
+                to="/#alur"
                 onClick={closeMenu}
                 className="rounded-lg px-4 py-2.5 font-semibold text-text-muted transition-all duration-300 hover:bg-light-gray hover:text-navy-dark"
               >
                 Alur
-              </a>
+              </Link>
 
-              <a
-                href="#kontak"
+              <Link
+                to="/#kontak"
                 onClick={closeMenu}
                 className="rounded-lg px-4 py-2.5 font-semibold text-text-muted transition-all duration-300 hover:bg-light-gray hover:text-navy-dark"
               >
                 Kontak
-              </a>
+              </Link>
 
               <Link
                 to="/order"
