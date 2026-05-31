@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+@theme {
+  --font-ubuntu: "Ubuntu", sans-serif;
+  --font-inconsolata: "Inconsolata", monospace;
+
+  --color-navy-dark: #0f172a;
+  --color-deep-blue: #1e3a8a;
+  --color-blue-accent: #2563eb;
+  --color-bright-blue: #3b82f6;
+  --color-purple-accent: #8b5cf6;
+  --color-indigo-accent: #6366f1;
+
+  --color-salmon: #fb7185;
+  --color-salmon-hover: #f43f5e;
+  --color-soft-pink: #fda4af;
+  --color-yellow: #facc15;
+  --color-emerald: #10b981;
+  --color-cyan: #06b6d4;
+
+  --color-light-gray: #f8fafc;
+  --color-lighter-gray: #f1f5f9;
+  --color-border-gray: #e2e8f0;
+  --color-white: #ffffff;
+
+  --color-text-dark: #111827;
+  --color-text-muted: #64748b;
+  --color-text-slate: #334155;
+  --color-text-light: #78716c;
+}
+
+body {
+  font-family: var(--font-ubuntu);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .gradient-primary {
+    @apply bg-gradient-to-r from-blue-accent via-purple-accent to-salmon;
+  }
+
+  .gradient-soft {
+    @apply bg-gradient-to-br from-light-gray via-lighter-gray to-white;
+  }
+
+  .card-glow {
+    @apply shadow-[0_10px_30px_rgba(0,0,0,0.08)];
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-[0_20px_50px_rgba(0,0,0,0.12)] hover:-translate-y-1;
+  }
+
+  .btn-primary {
+    @apply rounded-xl bg-gradient-to-r from-salmon to-salmon-hover px-6 py-3 font-semibold text-white shadow-md transition-all duration-300 hover:shadow-lg hover:scale-105;
+  }
+
+  .btn-secondary {
+    @apply rounded-xl border border-border-gray bg-white px-6 py-3 font-semibold text-text-slate transition-all duration-300 hover:bg-lighter-gray hover:border-blue-accent;
+  }
+}

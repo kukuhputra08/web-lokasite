@@ -1,0 +1,55 @@
+export const packageOptions = [
+  {
+    name: "Starter Site",
+    basePrice: 500000,
+    description: "Website sederhana satu halaman untuk mengenalkan bisnis.",
+    includedFeatures: [
+      "1 halaman website",
+      "Profil singkat bisnis",
+      "Kontak WhatsApp",
+      "Google Maps",
+      "Responsive Design",
+    ],
+  },
+  {
+    name: "Business Profile",
+    basePrice: 1000000,
+    description: "Website company profile untuk menampilkan profil bisnis.",
+    includedFeatures: [
+      "3-5 halaman website",
+      "Tentang Bisnis",
+      "Layanan",
+      "Galeri",
+      "Testimoni",
+      "Kontak WhatsApp",
+      "Google Maps",
+      "Responsive Design",
+    ],
+  },
+  {
+    name: "Catalog Site",
+    basePrice: 1500000,
+    description: "Website katalog produk/menu untuk UMKM.",
+    includedFeatures: [
+      "Katalog Produk/Menu",
+      "Kategori Produk",
+      "Detail Produk",
+      "Tombol Pesan WhatsApp",
+      "Testimoni",
+      "Kontak WhatsApp",
+      "Google Maps",
+      "Responsive Design",
+    ],
+  },
+  {
+    name: "Custom Site",
+    basePrice: 2500000,
+    description: "Website dengan fitur khusus sesuai kebutuhan bisnis.",
+    includedFeatures: [
+      "Konsultasi Fitur",
+      "Desain Custom",
+      "Responsive Design",
+      "Kontak WhatsApp",
+    ],
+  },
+];
