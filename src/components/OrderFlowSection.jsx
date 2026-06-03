@@ -1,100 +1,60 @@
+import { FileText, MessageSquare, MessageCircle, Settings, Sparkles } from "lucide-react";
+import Reveal from "./Reveal";
+
 const steps = [
-  {
-    number: "1",
-    title: "Isi Form",
-    emoji: "📝",
-    color: "from-blue-accent/20 to-blue-accent/10",
-    borderColor: "border-blue-accent/30"
-  },
-  {
-    number: "2",
-    title: "Cerita Kebutuhan",
-    emoji: "💭",
-    color: "from-purple-accent/20 to-purple-accent/10",
-    borderColor: "border-purple-accent/30"
-  },
-  {
-    number: "3",
-    title: "Diskusi WhatsApp",
-    emoji: "💬",
-    color: "from-emerald/20 to-emerald/10",
-    borderColor: "border-emerald/30"
-  },
-  {
-    number: "4",
-    title: "Website Dikerjakan",
-    emoji: "⚙️",
-    color: "from-cyan/20 to-cyan/10",
-    borderColor: "border-cyan/30"
-  },
-  {
-    number: "5",
-    title: "Revisi & Deploy",
-    emoji: "✨",
-    color: "from-salmon/20 to-salmon/10",
-    borderColor: "border-salmon/30"
-  },
+  { number: "1", title: "Isi Form", icon: FileText },
+  { number: "2", title: "Cerita Kebutuhan", icon: MessageSquare },
+  { number: "3", title: "Diskusi WhatsApp", icon: MessageCircle },
+  { number: "4", title: "Website Dikerjakan", icon: Settings },
+  { number: "5", title: "Revisi & Deploy", icon: Sparkles },
 ];
 
 function OrderFlowSection() {
   return (
-    <section id="alur" className="relative overflow-hidden bg-gradient-to-br from-lighter-gray via-white to-light-gray py-20 md:py-32">
-      {/* Background decoration */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/2 -left-32 h-64 w-64 rounded-full bg-blue-accent/10 blur-3xl" />
-        <div className="absolute bottom-1/4 -right-40 h-80 w-80 rounded-full bg-salmon/10 blur-3xl" />
-      </div>
-
-      <div className="relative mx-auto max-w-[1440px] px-6 sm:px-8 lg:px-12 xl:px-16">
-        <div className="mx-auto max-w-3xl text-center">
-          <div className="inline-flex items-center gap-2 rounded-full bg-blue-accent/15 px-4 py-2 mb-6">
-            <span className="text-lg">🎯</span>
-            <p className="font-inconsolata text-sm font-bold uppercase tracking-widest text-blue-accent">
-              Proses Mudah
-            </p>
-          </div>
-
-          <h2 className="text-3xl font-bold leading-tight text-navy-dark md:text-4xl lg:text-5xl">
+    <section id="alur" className="bg-surface py-20 md:py-30">
+      <div className="mx-auto max-w-[1440px] px-6 sm:px-8 lg:px-12 xl:px-16">
+        <Reveal className="mx-auto max-w-3xl text-center">
+          <p className="font-inconsolata text-sm font-semibold uppercase tracking-widest text-accent">
+            Proses Mudah
+          </p>
+          <h2 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-text-primary md:text-4xl lg:text-5xl">
             Cara Memesan Website
           </h2>
-
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-text-slate md:text-lg">
-            Proses order kami dirancang sederhana dan mudah dipahami, tanpa istilah teknis yang membingungkan.
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-text-secondary">
+            Proses order kami dirancang sederhana dan mudah dipahami, tanpa
+            istilah teknis yang membingungkan.
           </p>
+        </Reveal>
+
+        <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5">
+          {steps.map(({ number, title, icon: Icon }, index) => (
+            <Reveal
+              key={number}
+              delay={index * 100}
+              className="flex flex-col items-center rounded-2xl border border-border bg-background p-8 text-center transition-all duration-300 hover:-translate-y-1 hover:border-accent"
+            >
+              <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-surface-2 text-text-primary">
+                <Icon strokeWidth={1.5} className="h-6 w-6" />
+              </span>
+              <span className="mt-4 font-inconsolata text-xs font-semibold uppercase tracking-widest text-text-secondary">
+                Step {number}
+              </span>
+              <h3 className="mt-1 text-base font-semibold leading-snug text-text-primary">
+                {title}
+              </h3>
+            </Reveal>
+          ))}
         </div>
 
-        <div className="relative mt-18">
-          {/* Connection line for desktop */}
-          <div className="hidden lg:block absolute top-[4rem] left-0 right-0 h-1 bg-gradient-to-r from-transparent via-salmon/30 to-transparent" />
-
-          <div className="relative z-10 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-5">
-            {steps.map((step, idx) => (
-              <div
-                key={step.number}
-                className={`group flex flex-col items-center text-center rounded-3xl border-2 ${step.borderColor} bg-gradient-to-br ${step.color} backdrop-blur-sm p-7 md:p-8 shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-3 relative`}
-              >
-                {/* Step connection dot */}
-                <div className="absolute -top-5 left-1/2 -translate-x-1/2 h-10 w-10 rounded-full bg-gradient-to-br from-salmon to-salmon-hover text-white flex items-center justify-center font-bold text-sm shadow-lg">
-                  {step.number}
-                </div>
-
-                <div className="mt-8 text-5xl mb-4">
-                  {step.emoji}
-                </div>
-
-                <h3 className="text-lg font-bold text-navy-dark leading-snug">
-                  {step.title}
-                </h3>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="mx-auto mt-16 max-w-3xl rounded-3xl bg-gradient-to-r from-blue-accent/15 to-blue-accent/5 border border-blue-accent/30 p-8 md:p-10 text-center shadow-md">
-          <p className="text-base leading-relaxed text-text-slate md:text-lg">
-            <span className="font-bold text-navy-dark">📱 Setelah form dikirim:</span> Tim kami akan menghubungi Anda via WhatsApp untuk diskusi kebutuhan, estimasi, timeline, dan harga yang pas untuk bisnis Anda.
+        <Reveal className="mx-auto mt-12 max-w-3xl rounded-2xl border border-border bg-background p-8 text-center">
+          <p className="text-base leading-relaxed text-text-secondary">
+            <span className="font-semibold text-text-primary">
+              Setelah form dikirim:
+            </span>{" "}
+            Tim kami akan menghubungi Anda via WhatsApp untuk diskusi kebutuhan,
+            estimasi, timeline, dan harga yang pas untuk bisnis Anda.
           </p>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

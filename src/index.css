@@ -1,11 +1,16 @@
 @import "tailwindcss";
 
+/* Enable class-based dark mode (Tailwind v4) */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
-  --font-ubuntu: "Ubuntu", sans-serif;
+  /* Typography */
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-ubuntu: "Inter", system-ui, sans-serif; /* alias kept so existing font-ubuntu classes resolve */
   --font-inconsolata: "Inconsolata", monospace;
 
+  /* Brand accents (constant across themes) */
   --color-navy-dark: #0f172a;
-  --color-deep-blue: #1e3a8a;
   --color-blue-accent: #2563eb;
   --color-bright-blue: #3b82f6;
   --color-purple-accent: #8b5cf6;
@@ -18,49 +23,100 @@
   --color-emerald: #10b981;
   --color-cyan: #06b6d4;
 
-  --color-light-gray: #f8fafc;
+  /* Semantic tokens — LIGHT defaults (overridden under .dark) */
+  --color-background: #ffffff;
+  --color-surface: #fafafa;
+  --color-surface-2: #f1f5f9;
+  --color-text-primary: #1a1a1a;
+  --color-text-secondary: #666666;
+  --color-border: rgba(0, 0, 0, 0.08);
+  --color-border-strong: rgba(0, 0, 0, 0.12);
+  --color-accent: #0066ff;
+
+  /* Legacy aliases mapped onto semantic tokens for backward compatibility */
+  --color-light-gray: #fafafa;
   --color-lighter-gray: #f1f5f9;
   --color-border-gray: #e2e8f0;
   --color-white: #ffffff;
-
-  --color-text-dark: #111827;
-  --color-text-muted: #64748b;
+  --color-text-dark: #1a1a1a;
+  --color-text-muted: #666666;
   --color-text-slate: #334155;
   --color-text-light: #78716c;
 }
 
-body {
-  font-family: var(--font-ubuntu);
+/* Dark theme: override the semantic variables — utilities that reference
+   var(--color-*) automatically pick these up. */
+.dark {
+  --color-background: #0a0a0a;
+  --color-surface: #111111;
+  --color-surface-2: #18181b;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #a1a1aa;
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-border-strong: rgba(255, 255, 255, 0.16);
+  --color-accent: #3b82f6;
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
   }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--color-background);
+    color: var(--color-text-primary);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  /* Tighter tracking on headings per minimalist spec */
+  h1,
+  h2,
+  h3 {
+    letter-spacing: -0.02em;
+  }
 }
 
 @layer utilities {
-  .gradient-primary {
-    @apply bg-gradient-to-r from-blue-accent via-purple-accent to-salmon;
-  }
-
-  .gradient-soft {
-    @apply bg-gradient-to-br from-light-gray via-lighter-gray to-white;
-  }
-
-  .card-glow {
-    @apply shadow-[0_10px_30px_rgba(0,0,0,0.08)];
-  }
-
-  .card-hover {
-    @apply transition-all duration-300 hover:shadow-[0_20px_50px_rgba(0,0,0,0.12)] hover:-translate-y-1;
-  }
-
   .btn-primary {
-    @apply rounded-xl bg-gradient-to-r from-salmon to-salmon-hover px-6 py-3 font-semibold text-white shadow-md transition-all duration-300 hover:shadow-lg hover:scale-105;
+    @apply rounded-xl bg-gradient-to-r from-salmon to-salmon-hover px-6 py-3 font-semibold text-white shadow-sm transition-all duration-300 hover:shadow-md hover:scale-[1.02];
   }
 
   .btn-secondary {
-    @apply rounded-xl border border-border-gray bg-white px-6 py-3 font-semibold text-text-slate transition-all duration-300 hover:bg-lighter-gray hover:border-blue-accent;
+    @apply rounded-xl border border-border bg-background px-6 py-3 font-semibold text-text-primary transition-all duration-300 hover:border-accent;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Motion: scroll reveal (fade-in-up). An IntersectionObserver toggles */
+/* the .is-visible class. Uses transform/opacity only; honors          */
+/* prefers-reduced-motion.                                             */
+/* ------------------------------------------------------------------ */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  html {
+    scroll-behavior: auto;
   }
 }

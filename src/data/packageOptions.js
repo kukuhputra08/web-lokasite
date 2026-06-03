@@ -43,7 +43,7 @@ export const packageOptions = [
   },
   {
     name: "Custom Site",
-    basePrice: 2500000,
+    basePrice: 100000,
     description: "Website dengan fitur khusus sesuai kebutuhan bisnis.",
     includedFeatures: [
       "Konsultasi Fitur",

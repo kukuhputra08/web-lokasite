@@ -1,8 +1,9 @@
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router";
+import { ArrowLeft } from "lucide-react";
 
-// import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import ThemeToggle from "../components/ThemeToggle";
 
 import { packageOptions } from "../data/packageOptions";
 import { businessTypes } from "../data/businessTypes";
@@ -167,16 +168,17 @@ function Order() {
 };
 
   return (
-    <main className="min-h-screen bg-light-gray font-ubuntu text-text-slate">
-      {/* <Navbar /> */}
-
-      <button
-        onClick={() => navigate("/")}
-        className="fixed bottom-8 left-8 z-40 flex items-center gap-2 rounded-full bg-salmon px-6 py-3 font-semibold text-white shadow-lg transition hover:bg-salmon-hover hover:scale-105"
-      >
-        <span className="material-symbols-outlined text-xl">arrow_back</span>
-        Kembali ke Home
-      </button>
+    <main className="min-h-screen bg-background font-sans text-text-primary">
+      <div className="fixed bottom-8 left-8 z-40 flex items-center gap-3">
+        <button
+          onClick={() => navigate("/")}
+          className="flex items-center gap-2 rounded-full bg-salmon px-6 py-3 font-semibold text-white shadow-lg transition hover:bg-salmon-hover hover:scale-105"
+        >
+          <ArrowLeft strokeWidth={1.5} className="h-5 w-5" />
+          Kembali ke Home
+        </button>
+        <ThemeToggle className="h-12 w-12 shadow-lg" />
+      </div>
 
       <section className="pt-32 pb-16 md:pb-24">
         <div className="mx-auto max-w-[1200px] px-6 sm:px-8 lg:px-12">
@@ -185,11 +187,11 @@ function Order() {
               Form Konsultasi
             </p>
 
-            <h1 className="text-3xl font-bold leading-tight text-navy-dark md:text-4xl lg:text-5xl">
+            <h1 className="text-3xl font-bold leading-tight tracking-tight text-text-primary md:text-4xl lg:text-5xl">
               Ceritakan Kebutuhan Website UMKM Anda
             </h1>
 
-            <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-text-slate md:text-lg">
+            <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-text-secondary md:text-lg">
               Pilih paket yang sesuai, lalu sistem akan otomatis menghitung
               estimasi harga berdasarkan fitur yang dipilih.
             </p>
@@ -199,10 +201,10 @@ function Order() {
             onSubmit={handleSubmit}
             className="mt-12 grid grid-cols-1 gap-8 lg:grid-cols-[1fr_380px]"
           >
-            <div className="rounded-3xl border border-border-gray bg-white p-6 shadow-sm md:p-8 lg:p-10">
+            <div className="rounded-3xl border border-border bg-surface p-6 md:p-8 lg:p-10">
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 <div>
-                  <label className="mb-2 block font-semibold text-navy-dark">
+                  <label className="mb-2 block font-semibold text-text-primary">
                     Nama Lengkap <span className="text-salmon">*</span>
                   </label>
                   <input
@@ -211,7 +213,7 @@ function Order() {
                     value={formData.fullName}
                     onChange={handleChange}
                     placeholder="Contoh: Kukuh Putra"
-                    className="w-full rounded-xl border border-border-gray px-4 py-3 outline-none transition focus:border-salmon focus:ring-2 focus:ring-salmon/20"
+                    className="w-full rounded-xl border border-border bg-background px-4 py-3 text-text-primary outline-none transition placeholder:text-text-secondary focus:border-salmon focus:ring-2 focus:ring-salmon/20"
                   />
                   {errors.fullName && (
                     <p className="mt-2 text-sm text-salmon">
@@ -221,7 +223,7 @@ function Order() {
                 </div>
 
                 <div>
-                  <label className="mb-2 block font-semibold text-navy-dark">
+                  <label className="mb-2 block font-semibold text-text-primary">
                     Nama UMKM/Bisnis <span className="text-salmon">*</span>
                   </label>
                   <input
@@ -230,7 +232,7 @@ function Order() {
                     value={formData.businessName}
                     onChange={handleChange}
                     placeholder="Contoh: Dapur Nusa"
-                    className="w-full rounded-xl border border-border-gray px-4 py-3 outline-none transition focus:border-salmon focus:ring-2 focus:ring-salmon/20"
+                    className="w-full rounded-xl border border-border bg-background px-4 py-3 text-text-primary outline-none transition placeholder:text-text-secondary focus:border-salmon focus:ring-2 focus:ring-salmon/20"
                   />
                   {errors.businessName && (
                     <p className="mt-2 text-sm text-salmon">
@@ -240,7 +242,7 @@ function Order() {
                 </div>
 
                 <div>
-                  <label className="mb-2 block font-semibold text-navy-dark">
+                  <label className="mb-2 block font-semibold text-text-primary">
                     Nomor WhatsApp <span className="text-salmon">*</span>
                   </label>
                   <input
@@ -249,7 +251,7 @@ function Order() {
                     value={formData.whatsapp}
                     onChange={handleChange}
                     placeholder="Contoh: 081234567890"
-                    className="w-full rounded-xl border border-border-gray px-4 py-3 outline-none transition focus:border-salmon focus:ring-2 focus:ring-salmon/20"
+                    className="w-full rounded-xl border border-border bg-background px-4 py-3 text-text-primary outline-none transition placeholder:text-text-secondary focus:border-salmon focus:ring-2 focus:ring-salmon/20"
                   />
                   {errors.whatsapp && (
                     <p className="mt-2 text-sm text-salmon">
@@ -259,7 +261,7 @@ function Order() {
                 </div>
 
                 <div>
-                  <label className="mb-2 block font-semibold text-navy-dark">
+                  <label className="mb-2 block font-semibold text-text-primary">
                     Email
                   </label>
                   <input
@@ -268,19 +270,19 @@ function Order() {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="Contoh: nama@email.com"
-                    className="w-full rounded-xl border border-border-gray px-4 py-3 outline-none transition focus:border-salmon focus:ring-2 focus:ring-salmon/20"
+                    className="w-full rounded-xl border border-border bg-background px-4 py-3 text-text-primary outline-none transition placeholder:text-text-secondary focus:border-salmon focus:ring-2 focus:ring-salmon/20"
                   />
                 </div>
 
                 <div>
-                  <label className="mb-2 block font-semibold text-navy-dark">
+                  <label className="mb-2 block font-semibold text-text-primary">
                     Jenis Usaha <span className="text-salmon">*</span>
                   </label>
                   <select
                     name="businessType"
                     value={formData.businessType}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-border-gray px-4 py-3 outline-none transition focus:border-salmon focus:ring-2 focus:ring-salmon/20"
+                    className="w-full rounded-xl border border-border bg-background px-4 py-3 text-text-primary outline-none transition placeholder:text-text-secondary focus:border-salmon focus:ring-2 focus:ring-salmon/20"
                   >
                     <option value="">Pilih jenis usaha</option>
                     {businessTypes.map((type) => (
@@ -297,14 +299,14 @@ function Order() {
                 </div>
 
                 <div>
-                  <label className="mb-2 block font-semibold text-navy-dark">
+                  <label className="mb-2 block font-semibold text-text-primary">
                     Paket yang Diminati <span className="text-salmon">*</span>
                   </label>
                   <select
                     name="selectedPackage"
                     value={formData.selectedPackage}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-border-gray px-4 py-3 outline-none transition focus:border-salmon focus:ring-2 focus:ring-salmon/20"
+                    className="w-full rounded-xl border border-border bg-background px-4 py-3 text-text-primary outline-none transition placeholder:text-text-secondary focus:border-salmon focus:ring-2 focus:ring-salmon/20"
                   >
                     <option value="">Pilih paket website</option>
                     {packageOptions.map((item) => (
@@ -321,15 +323,15 @@ function Order() {
                 </div>
 
                 {selectedPackageData && (
-                  <div className="md:col-span-2 rounded-2xl border border-border-gray bg-light-gray p-5">
-                    <p className="font-semibold text-navy-dark">
+                  <div className="md:col-span-2 rounded-2xl border border-border bg-surface-2 p-5">
+                    <p className="font-semibold text-text-primary">
                       Fitur bawaan paket {selectedPackageData.name}
                     </p>
                     <div className="mt-3 flex flex-wrap gap-2">
                       {selectedPackageData.includedFeatures.map((feature) => (
                         <span
                           key={feature}
-                          className="rounded-full bg-white px-3 py-1 text-sm font-medium text-text-slate shadow-sm"
+                          className="rounded-full border border-border bg-background px-3 py-1 text-sm font-medium text-text-secondary"
                         >
                           {feature}
                         </span>
@@ -339,7 +341,7 @@ function Order() {
                 )}
 
                 <div className="md:col-span-2">
-                  <label className="mb-2 block font-semibold text-navy-dark">
+                  <label className="mb-2 block font-semibold text-text-primary">
                     Tujuan Website
                   </label>
                   <input
@@ -348,12 +350,12 @@ function Order() {
                     value={formData.websiteGoal}
                     onChange={handleChange}
                     placeholder="Contoh: ingin menampilkan katalog produk dan menerima pesanan via WhatsApp"
-                    className="w-full rounded-xl border border-border-gray px-4 py-3 outline-none transition focus:border-salmon focus:ring-2 focus:ring-salmon/20"
+                    className="w-full rounded-xl border border-border bg-background px-4 py-3 text-text-primary outline-none transition placeholder:text-text-secondary focus:border-salmon focus:ring-2 focus:ring-salmon/20"
                   />
                 </div>
 
                 <div className="md:col-span-2">
-                  <label className="mb-3 block font-semibold text-navy-dark">
+                  <label className="mb-3 block font-semibold text-text-primary">
                     Tambahan Fitur Opsional
                   </label>
 
@@ -363,8 +365,8 @@ function Order() {
                         key={feature.name}
                         className={`flex cursor-pointer items-center justify-between gap-3 rounded-xl border px-4 py-3 transition ${
                           formData.additionalFeatures.includes(feature.name)
-                            ? "border-salmon bg-salmon/10 text-navy-dark"
-                            : "border-border-gray bg-white text-text-slate hover:bg-light-gray"
+                            ? "border-salmon bg-salmon/10 text-text-primary"
+                            : "border-border bg-background text-text-secondary hover:border-accent"
                         }`}
                       >
                         <div className="flex items-center gap-3">
@@ -392,7 +394,7 @@ function Order() {
                 </div>
 
                 <div>
-                  <label className="mb-2 block font-semibold text-navy-dark">
+                  <label className="mb-2 block font-semibold text-text-primary">
                     Deadline
                   </label>
                   <input
@@ -400,12 +402,12 @@ function Order() {
                     name="deadline"
                     value={formData.deadline}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-border-gray px-4 py-3 outline-none transition focus:border-salmon focus:ring-2 focus:ring-salmon/20"
+                    className="w-full rounded-xl border border-border bg-background px-4 py-3 text-text-primary outline-none transition placeholder:text-text-secondary focus:border-salmon focus:ring-2 focus:ring-salmon/20"
                   />
                 </div>
 
                 <div>
-                  <label className="mb-2 block font-semibold text-navy-dark">
+                  <label className="mb-2 block font-semibold text-text-primary">
                     Referensi Website
                   </label>
                   <input
@@ -414,12 +416,12 @@ function Order() {
                     value={formData.referenceWebsite}
                     onChange={handleChange}
                     placeholder="Masukkan link website referensi jika ada"
-                    className="w-full rounded-xl border border-border-gray px-4 py-3 outline-none transition focus:border-salmon focus:ring-2 focus:ring-salmon/20"
+                    className="w-full rounded-xl border border-border bg-background px-4 py-3 text-text-primary outline-none transition placeholder:text-text-secondary focus:border-salmon focus:ring-2 focus:ring-salmon/20"
                   />
                 </div>
 
                 <div className="md:col-span-2">
-                  <label className="mb-2 block font-semibold text-navy-dark">
+                  <label className="mb-2 block font-semibold text-text-primary">
                     Deskripsi Kebutuhan <span className="text-salmon">*</span>
                   </label>
                   <textarea
@@ -428,7 +430,7 @@ function Order() {
                     onChange={handleChange}
                     rows="6"
                     placeholder="Ceritakan kebutuhan website Anda."
-                    className="w-full resize-none rounded-xl border border-border-gray px-4 py-3 outline-none transition focus:border-salmon focus:ring-2 focus:ring-salmon/20"
+                    className="w-full resize-none rounded-xl border border-border bg-background px-4 py-3 text-text-primary outline-none transition placeholder:text-text-secondary focus:border-salmon focus:ring-2 focus:ring-salmon/20"
                   />
                   {errors.description && (
                     <p className="mt-2 text-sm text-salmon">
@@ -439,40 +441,40 @@ function Order() {
               </div>
             </div>
 
-            <aside className="h-fit rounded-3xl border border-border-gray bg-white p-6 shadow-sm lg:sticky lg:top-28">
+            <aside className="h-fit rounded-3xl border border-border bg-surface p-6 shadow-sm lg:sticky lg:top-28">
               <p className="font-inconsolata text-sm font-bold uppercase tracking-widest text-salmon">
                 Ringkasan Pesanan
               </p>
 
-              <h2 className="mt-2 text-2xl font-bold text-navy-dark">
+              <h2 className="mt-2 text-2xl font-bold text-text-primary">
                 Estimasi Checkout
               </h2>
 
               {!selectedPackageData ? (
-                <p className="mt-4 text-sm leading-relaxed text-text-muted">
+                <p className="mt-4 text-sm leading-relaxed text-text-secondary">
                   Pilih paket website terlebih dahulu untuk melihat estimasi
                   harga.
                 </p>
               ) : (
                 <>
-                  <div className="mt-6 rounded-2xl bg-light-gray p-4">
-                    <p className="text-sm font-semibold text-text-muted">
+                  <div className="mt-6 rounded-2xl bg-surface-2 p-4">
+                    <p className="text-sm font-semibold text-text-secondary">
                       Paket Dipilih
                     </p>
-                    <p className="mt-1 font-bold text-navy-dark">
+                    <p className="mt-1 font-bold text-text-primary">
                       {selectedPackageData.name}
                     </p>
-                    <p className="mt-2 text-sm text-text-slate">
+                    <p className="mt-2 text-sm text-text-secondary">
                       {selectedPackageData.description}
                     </p>
                   </div>
 
-                  <div className="mt-6 space-y-3 border-b border-border-gray pb-5">
+                  <div className="mt-6 space-y-3 border-b border-border pb-5">
                     <div className="flex justify-between gap-4">
-                      <span className="text-sm text-text-slate">
+                      <span className="text-sm text-text-secondary">
                         Harga paket
                       </span>
-                      <span className="font-semibold text-navy-dark">
+                      <span className="font-semibold text-text-primary">
                         {formatCurrency(selectedPackageData.basePrice)}
                       </span>
                     </div>
@@ -487,10 +489,10 @@ function Order() {
                           key={featureName}
                           className="flex justify-between gap-4"
                         >
-                          <span className="text-sm text-text-slate">
+                          <span className="text-sm text-text-secondary">
                             {featureName}
                           </span>
-                          <span className="font-semibold text-navy-dark">
+                          <span className="font-semibold text-text-primary">
                             {formatCurrency(feature.price)}
                           </span>
                         </div>
@@ -500,10 +502,10 @@ function Order() {
 
                   <div className="mt-5 flex items-end justify-between gap-4">
                     <div>
-                      <p className="text-sm font-semibold text-text-muted">
+                      <p className="text-sm font-semibold text-text-secondary">
                         Total Estimasi
                       </p>
-                      <p className="text-xs text-text-muted">
+                      <p className="text-xs text-text-secondary">
                         Belum termasuk biaya tambahan khusus
                       </p>
                     </div>
@@ -514,7 +516,7 @@ function Order() {
                   </div>
 
                   <div className="mt-6">
-                    <p className="text-sm font-semibold text-text-muted">
+                    <p className="text-sm font-semibold text-text-secondary">
                       Fitur Final
                     </p>
 
@@ -522,7 +524,7 @@ function Order() {
                       {finalFeatures.map((feature) => (
                         <span
                           key={feature}
-                          className="rounded-full bg-light-gray px-3 py-1 text-xs font-medium text-text-slate"
+                          className="rounded-full bg-surface-2 px-3 py-1 text-xs font-medium text-text-secondary"
                         >
                           {feature}
                         </span>
@@ -533,7 +535,7 @@ function Order() {
               )}
 
               {submitError && (
-                <div className="mt-6 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-600">
+                <div className="mt-6 rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm font-semibold text-red-500">
                   {submitError}
                 </div>
               )}
@@ -546,7 +548,7 @@ function Order() {
                 {isSubmitting ? "Mengirim..." : "Kirim Konsultasi"}
               </button>
 
-              <p className="mt-4 text-xs leading-relaxed text-text-muted">
+              <p className="mt-4 text-xs leading-relaxed text-text-secondary">
                 Harga bersifat estimasi. Tim LokaSite akan mengonfirmasi kembali
                 setelah diskusi kebutuhan melalui WhatsApp.
               </p>

@@ -1,98 +1,102 @@
+import { Link } from "react-router";
+import { Zap, Palette, Handshake, MessageCircle, Mail, Camera } from "lucide-react";
+
+const menuLinks = [
+  { href: "#home", label: "Home" },
+  { href: "#layanan", label: "Layanan" },
+  { href: "#paket", label: "Paket" },
+  { href: "/order", label: "Konsultasi" },
+];
+
+const traits = [
+  { icon: Zap, label: "Cepat" },
+  { icon: Palette, label: "Elegan" },
+  { icon: Handshake, label: "Ramah" },
+];
+
+const contacts = [
+  { icon: MessageCircle, label: "WhatsApp" },
+  { icon: Mail, label: "Email" },
+  { icon: Camera, label: "Instagram" },
+];
+
 function Footer() {
   return (
-    <footer id="kontak" className="relative border-t border-navy-dark/30 bg-gradient-to-br from-navy-dark via-navy-dark/95 to-navy-dark pt-20 pb-10">
-      {/* Decorative gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-salmon/5 via-transparent to-blue-accent/5 pointer-events-none" />
-
-      <div className="relative mx-auto max-w-[1440px] px-6 sm:px-8 lg:px-12 xl:px-16">
+    <footer
+      id="kontak"
+      className="border-t border-white/10 bg-navy-dark pt-20 pb-10 text-white"
+    >
+      <div className="mx-auto max-w-[1440px] px-6 sm:px-8 lg:px-12 xl:px-16">
         <div className="mb-14 grid grid-cols-1 gap-12 md:grid-cols-4">
           <div className="space-y-5 md:col-span-2">
-            <div className="text-3xl font-bold">
-              <span className="bg-gradient-to-r from-white via-white to-salmon bg-clip-text text-transparent">
-                Loka
-              </span>
-              <span className="bg-gradient-to-r from-salmon to-salmon-hover bg-clip-text text-transparent">
-                Site
-              </span>
+            <div className="text-2xl font-bold tracking-tight">
+              Loka<span className="text-salmon">Site</span>
             </div>
-
             <p className="max-w-sm text-base leading-relaxed text-slate-400">
-              Membantu UMKM tampil profesional secara digital dengan website yang modern, elegan, cepat, dan friendly.
+              Membantu UMKM tampil profesional secara digital dengan website
+              yang modern, elegan, cepat, dan friendly.
             </p>
-
-            <div className="flex gap-3 pt-2">
-              <div className="flex items-center gap-2 text-sm font-semibold text-slate-300">
-                <span className="text-lg">⚡</span> Cepat
-              </div>
-              <div className="flex items-center gap-2 text-sm font-semibold text-slate-300">
-                <span className="text-lg">🎨</span> Elegan
-              </div>
-              <div className="flex items-center gap-2 text-sm font-semibold text-slate-300">
-                <span className="text-lg">🤝</span> Ramah
-              </div>
+            <div className="flex flex-wrap gap-5 pt-2">
+              {traits.map(({ icon: Icon, label }) => (
+                <div
+                  key={label}
+                  className="flex items-center gap-2 text-sm font-medium text-slate-300"
+                >
+                  <Icon strokeWidth={1.5} className="h-4 w-4 text-salmon" />
+                  {label}
+                </div>
+              ))}
             </div>
           </div>
 
           <div>
-            <h4 className="mb-6 font-inconsolata text-xs font-bold uppercase tracking-widest text-white">
+            <h4 className="mb-6 font-inconsolata text-xs font-semibold uppercase tracking-widest text-white">
               Menu
             </h4>
-
             <ul className="space-y-3">
-              <li>
-                <a className="group text-slate-400 transition-all duration-300 hover:text-white hover:translate-x-1 inline-flex items-center gap-2" href="#home">
-                  <span className="opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-                  Home
-                </a>
-              </li>
-              <li>
-                <a className="group text-slate-400 transition-all duration-300 hover:text-white hover:translate-x-1 inline-flex items-center gap-2" href="#layanan">
-                  <span className="opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-                  Layanan
-                </a>
-              </li>
-              <li>
-                <a className="group text-slate-400 transition-all duration-300 hover:text-white hover:translate-x-1 inline-flex items-center gap-2" href="#paket">
-                  <span className="opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-                  Paket
-                </a>
-              </li>
-              <li>
-                <a className="group text-slate-400 transition-all duration-300 hover:text-white hover:translate-x-1 inline-flex items-center gap-2" href="/order">
-                  <span className="opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-                  Konsultasi
-                </a>
-              </li>
+              {menuLinks.map((link) => (
+                <li key={link.label}>
+                  {link.href.startsWith("/") ? (
+                    <Link
+                      to={link.href}
+                      className="text-slate-400 transition-colors duration-300 hover:text-white"
+                    >
+                      {link.label}
+                    </Link>
+                  ) : (
+                    <a
+                      href={link.href}
+                      className="text-slate-400 transition-colors duration-300 hover:text-white"
+                    >
+                      {link.label}
+                    </a>
+                  )}
+                </li>
+              ))}
             </ul>
           </div>
 
           <div>
-            <h4 className="mb-6 font-inconsolata text-xs font-bold uppercase tracking-widest text-white">
+            <h4 className="mb-6 font-inconsolata text-xs font-semibold uppercase tracking-widest text-white">
               Hubungi Kami
             </h4>
-
             <ul className="space-y-3">
-              <li className="group flex items-center gap-3 text-slate-400 transition-colors hover:text-white cursor-pointer">
-                <span className="material-symbols-outlined text-lg text-salmon">chat</span>
-                <span className="text-sm font-medium">WhatsApp</span>
-              </li>
-
-              <li className="group flex items-center gap-3 text-slate-400 transition-colors hover:text-white cursor-pointer">
-                <span className="material-symbols-outlined text-lg text-blue-accent">mail</span>
-                <span className="text-sm font-medium">Email</span>
-              </li>
-
-              <li className="group flex items-center gap-3 text-slate-400 transition-colors hover:text-white cursor-pointer">
-                <span className="material-symbols-outlined text-lg text-purple-accent">photo_camera</span>
-                <span className="text-sm font-medium">Instagram</span>
-              </li>
+              {contacts.map(({ icon: Icon, label }) => (
+                <li
+                  key={label}
+                  className="flex cursor-pointer items-center gap-3 text-slate-400 transition-colors duration-300 hover:text-white"
+                >
+                  <Icon strokeWidth={1.5} className="h-5 w-5" />
+                  <span className="text-sm font-medium">{label}</span>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-navy-dark/50 pt-8 text-center md:text-left">
-          <p className="text-xs text-slate-500 font-medium">
-            © 2026 LokaSite. All rights reserved. Crafted with <span className="text-salmon">❤️</span>
+        <div className="border-t border-white/10 pt-8 text-center md:text-left">
+          <p className="text-xs font-medium text-slate-500">
+            © 2026 LokaSite. All rights reserved.
           </p>
         </div>
       </div>

@@ -11,11 +11,11 @@ import Footer from "../components/Footer";
 
 function Home() {
   return (
-    <main className="min-h-screen bg-white font-ubuntu text-text-slate">
+    <main className="min-h-screen bg-background font-sans text-text-primary">
       <Navbar />
       <HeroSection />
       <ProblemSection />
-      <SolutionSection />R
+      <SolutionSection />
       <ServicesSection />
       <PricingSection />
       <OrderFlowSection />
